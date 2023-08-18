@@ -44,6 +44,12 @@ ukr_health$travel_time <- ukr_health$travel_time |> set_units("seconds") |>  set
 ukr_health$travel_distance <- ukr_health$travel_distance |> set_units("meter") |> set_units("km") |> round(3)
 
 ukr_health$min_distance <- ukr_health$min_distance |> set_units("meter") |> set_units("km") |> round(3)
+
+
+union_isochrones$value <- union_isochrones$value |> set_units("seconds") |>  set_units("minutes") |> round(3)
+
+union_isochrones <- union_isochrones |> arrange(desc(value))
+
 ```
 
 # Explorative analysis
@@ -139,5 +145,30 @@ m.2 <- tm_basemap("Stadia.AlidadeSmooth") +
   )
 
 tmap_arrange(m.1,m.2, sync = T)
+
+```
+
+
+
+## Map Isochrones
+
+```{r}
+
+tm_basemap("Stadia.AlidadeSmooth") +
+  tm_shape(union_isochrones |> st_make_valid()) +
+  tm_polygons(
+    col = "value",
+    palette = viridis::viridis(6),
+    n=6,
+    border.lwd = NA
+  ) +
+  tm_shape(ukr_health) +
+  tm_dots(
+    size = 0.1,
+    border.lwd = 0,
+    popup.vars = c("settlement", "travel_distance", "min_distance")
+  )
+  
+
 
 ```
