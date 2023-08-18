@@ -59,7 +59,7 @@ union_isochrones <- union_isochrones |> arrange(desc(value))
 ```{r}
 tmap_mode("view")
 
-tm_basemap("Stadia.AlidadeSmooth") +
+tm_basemap("OpenStreetMap") +
   tm_shape(ukr_health) +
   tm_symbols(
     col = "travel_time",
