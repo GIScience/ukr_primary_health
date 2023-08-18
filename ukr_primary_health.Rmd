@@ -160,15 +160,17 @@ tm_basemap("OpenStreetMap") +
     col = "value",
     palette = viridis::viridis(6),
     n=6,
-    border.lwd = NA
-  ) +
-  tm_shape(ukr_health) +
-  tm_dots(
-    size = 0.1,
-    border.lwd = 0,
-    popup.vars = c("settlement", "travel_distance", "min_distance")
-  )
-  
+    alpha = 0.75,
+    border.col = 0.1
+  ) 
+# +
+#   tm_shape(ukr_health) +
+#   tm_dots(
+#     size = 0.1,
+#     border.lwd = 0,
+#     popup.vars = c("settlement", "travel_distance", "min_distance")
+#   )
+#   
 
 
 ```
