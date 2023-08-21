@@ -97,13 +97,6 @@ df <- rbind(
 
 mu <- ddply(df, "type", summarise, grp.mean=mean(distance, na.rm=T))
 
-p <- ggplot(df, aes(x=distance, color=type)) +
-  geom_histogram(fill="white", position="dodge")+
-  geom_vline(data=mu, aes(xintercept=grp.mean, color=type),
-             linetype="dashed")
-
-p+ scale_color_brewer(palette="Dark2")+
-  scale_fill_brewer(palette="Dark2")
 
 
 ggplot(df, aes(x=distance, color=type, fill=type)) +
